@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="member_table")
+@Table(name="member")
 public class Member {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -22,15 +22,15 @@ public class Member {
 	@Column(name="mem_nickname")
 	private String mem_nickname; 
 	@Column(name="mem_level")
-	private int mem_level;
+	private Integer mem_level;
 	@Column(name="mem_point")
-	private int mem_point; 
+	private Integer mem_point; 
 	@Column(name="mem_phone")
 	private String mem_phone;
 	@Column(name="mem_birthday")
 	private java.sql.Timestamp mem_birthday;
 	@Column(name="mem_sex")
-	private int mem_sex;
+	private Integer mem_sex;
 	@Column(name="mem_zipcode")
 	private String mem_zipcode;
 	@Column(name="mem_address1")
@@ -42,17 +42,17 @@ public class Member {
 	@Column(name="mem_address4")
 	private String mem_address4;
 	@Column(name="mem_receive_email")
-	private int mem_receive_email;
+	private Integer mem_receive_email;
 	@Column(name="mem_use_note")
-	private int mem_use_note;
+	private Integer mem_use_note;
 	@Column(name="mem_receive_sms")
-	private int mem_receive_sms;
+	private Integer mem_receive_sms;
 	@Column(name="mem_open_profile")
-	private int mem_open_profile;
+	private Integer mem_open_profile;
 	@Column(name="mem_denied")
-	private int mem_denied;
+	private Integer mem_denied;
 	@Column(name="mem_email_cert")
-	private int mem_email_cert;
+	private Integer mem_email_cert;
 	@Column(name="mem_register_datetime")
 	private java.sql.Timestamp mem_register_datetime;
 	@Column(name="mem_register_ip")
@@ -62,7 +62,7 @@ public class Member {
 	@Column(name="mem_lastlogin_ip")
 	private String mem_lastlogin_ip;
 	@Column(name="mem_is_admin")
-	private int mem_is_admin;
+	private Integer mem_is_admin;
 	@Column(name="mem_profile_content")
 	private String  mem_profile_content;
 	@Column(name="mem_adminmemo")
@@ -124,19 +124,19 @@ public class Member {
 		this.mem_nickname = mem_nickname;
 	}
 
-	public int getMem_level() {
+	public Integer getMem_level() {
 		return mem_level;
 	}
 
-	public void setMem_level(int mem_level) {
+	public void setMem_level(Integer mem_level) {
 		this.mem_level = mem_level;
 	}
 
-	public int getMem_point() {
+	public Integer getMem_point() {
 		return mem_point;
 	}
 
-	public void setMem_point(int mem_point) {
+	public void setMem_point(Integer mem_point) {
 		this.mem_point = mem_point;
 	}
 
@@ -156,11 +156,11 @@ public class Member {
 		this.mem_birthday = mem_birthday;
 	}
 
-	public int getMem_sex() {
+	public Integer getMem_sex() {
 		return mem_sex;
 	}
 
-	public void setMem_sex(int mem_sex) {
+	public void setMem_sex(Integer mem_sex) {
 		this.mem_sex = mem_sex;
 	}
 
@@ -204,51 +204,51 @@ public class Member {
 		this.mem_address4 = mem_address4;
 	}
 
-	public int getMem_receive_email() {
+	public Integer getMem_receive_email() {
 		return mem_receive_email;
 	}
 
-	public void setMem_receive_email(int mem_receive_email) {
+	public void setMem_receive_email(Integer mem_receive_email) {
 		this.mem_receive_email = mem_receive_email;
 	}
 
-	public int getMem_use_note() {
+	public Integer getMem_use_note() {
 		return mem_use_note;
 	}
 
-	public void setMem_use_note(int mem_use_note) {
+	public void setMem_use_note(Integer mem_use_note) {
 		this.mem_use_note = mem_use_note;
 	}
 
-	public int getMem_receive_sms() {
+	public Integer getMem_receive_sms() {
 		return mem_receive_sms;
 	}
 
-	public void setMem_receive_sms(int mem_receive_sms) {
+	public void setMem_receive_sms(Integer mem_receive_sms) {
 		this.mem_receive_sms = mem_receive_sms;
 	}
 
-	public int getMem_open_profile() {
+	public Integer getMem_open_profile() {
 		return mem_open_profile;
 	}
 
-	public void setMem_open_profile(int mem_open_profile) {
+	public void setMem_open_profile(Integer mem_open_profile) {
 		this.mem_open_profile = mem_open_profile;
 	}
 
-	public int getMem_denied() {
+	public Integer getMem_denied() {
 		return mem_denied;
 	}
 
-	public void setMem_denied(int mem_denied) {
+	public void setMem_denied(Integer mem_denied) {
 		this.mem_denied = mem_denied;
 	}
 
-	public int getMem_email_cert() {
+	public Integer getMem_email_cert() {
 		return mem_email_cert;
 	}
 
-	public void setMem_email_cert(int mem_email_cert) {
+	public void setMem_email_cert(Integer mem_email_cert) {
 		this.mem_email_cert = mem_email_cert;
 	}
 
@@ -284,11 +284,11 @@ public class Member {
 		this.mem_lastlogin_ip = mem_lastlogin_ip;
 	}
 
-	public int getMem_is_admin() {
+	public Integer getMem_is_admin() {
 		return mem_is_admin;
 	}
 
-	public void setMem_is_admin(int mem_is_admin) {
+	public void setMem_is_admin(Integer mem_is_admin) {
 		this.mem_is_admin = mem_is_admin;
 	}
 
@@ -322,5 +322,7 @@ public class Member {
 
 	public void setMem_photo(String mem_photo) {
 		this.mem_photo = mem_photo;
-	}	
+	}
+
+	
 }

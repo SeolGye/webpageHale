@@ -1,12 +1,11 @@
-package com.seol.springdemo.dao;
+package com.seol.springdemo.service;
 
 import java.util.List;
 
 import com.seol.springdemo.entity.Member;
 
-public interface MemberDAO {
-	
-	
+public interface MemberService {
+
 	public List<Member> getMembers(int theSortField);
 
 	public void saveMember(Member theMember);
@@ -16,6 +15,7 @@ public interface MemberDAO {
 	public void deleteMember(int theId);
 
 	public List<Member> searchMembers(String theSearchName);
-
+	
 }
+
 
