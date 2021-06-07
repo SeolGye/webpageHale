@@ -14,5 +14,7 @@ public interface MemberDao {
 	List<Member> getMember();
 
 	Member getMember(int theId);
+
+	void deleteMember(String name);
 	
 }

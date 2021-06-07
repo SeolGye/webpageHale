@@ -97,7 +97,7 @@ $("#insert_btn").click(function(){
                             <i class="glyphicon glyphicon-edit"></i>
                             </a>
                             
-                            <a href="${pageContext.request.contextPath}/member/deleteMember" data-original-title="Remove this user" data-toggle="tooltip"  type="button" class="btn btn-sm btn-danger" onClick="">
+                            <a href="${pageContext.request.contextPath}/member/deleteMember" data-original-title="Remove this user" data-toggle="tooltip"  type="button" class="btn btn-sm btn-danger" onClick="if(!(confirm('정말로 삭제하시겠습니까? '))) return false">
                             <i class="glyphicon glyphicon-remove">
                             </i>
                             </a>

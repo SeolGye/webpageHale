@@ -132,6 +132,8 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String memberName) throws UsernameNotFoundException {
+		
+		
 //멤버 DAo로 유저를 찾아 받는다. 여기서는 일반 데이터
 		Member member = memberDao.findByMemeberName(memberName);
 		
@@ -146,6 +148,14 @@ public class MemberServiceImpl implements MemberService {
 
 	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
 		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+	}
+	
+//삭제 기능
+	@Override
+	@Transactional
+	public void deleteMember(String name) {
+		memberDao.deleteMember(name);
+		
 	}
 	
 	

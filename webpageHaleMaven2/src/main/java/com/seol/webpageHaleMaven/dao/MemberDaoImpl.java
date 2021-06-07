@@ -80,5 +80,11 @@ public class MemberDaoImpl implements MemberDao{
 		return theMember;
 	}
 
-	
+	@Override
+	public void deleteMember(String name) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query theQuery = currentSession.createQuery("delete from Member where mem_username =:username");
+		theQuery.setParameter("username", name);
+		theQuery.executeUpdate();
+	}
 }

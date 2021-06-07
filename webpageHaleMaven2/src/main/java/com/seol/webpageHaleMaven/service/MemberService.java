@@ -25,4 +25,6 @@ public interface MemberService extends UserDetailsService {
 
 
 	void savePassword(Password password, String memberName);
+
+	void deleteMember(String name);
 }

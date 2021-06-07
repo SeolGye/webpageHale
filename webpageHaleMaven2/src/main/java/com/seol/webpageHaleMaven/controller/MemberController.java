@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.seol.webpageHaleMaven.dao.MemberDao;
 import com.seol.webpageHaleMaven.entity.Member;
 import com.seol.webpageHaleMaven.member.CrmMember;
 import com.seol.webpageHaleMaven.member.EditMember;
@@ -79,11 +80,12 @@ public class MemberController {
 		
 		return "redirect:/member/";
 	}
-//멤버 삭제하기
+//회원 정보에서 멤버 삭제하기
 	@GetMapping("/deleteMember")
-	public String deleteMember(@ModelAttribute("member") Member theMember) {
-		
-		return "redirect:/";
+	public String deleteMember( Principal principal) {
+//이름을 받아서 삭제하는 기능
+		memberService.deleteMember(principal.getName());
+		return "delete-confirmation";
 	}
 //비밀번호 변경 페이지 열기
 	@GetMapping("/changePassword")
