@@ -3,6 +3,7 @@ package com.seol.webpageHaleMaven.controller;
 import java.security.Principal;
 import java.util.logging.Logger;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,10 +83,12 @@ public class MemberController {
 	}
 //회원 정보에서 멤버 삭제하기
 	@GetMapping("/deleteMember")
-	public String deleteMember( Principal principal) {
+	public String deleteMember( Principal principal, HttpSession session) {
 //이름을 받아서 삭제하는 기능
 		memberService.deleteMember(principal.getName());
-		return "delete-confirmation";
+		session.invalidate();
+		
+		return "redirect:/";
 	}
 //비밀번호 변경 페이지 열기
 	@GetMapping("/changePassword")
