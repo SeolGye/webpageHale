@@ -142,7 +142,7 @@ public class MemberServiceImpl implements MemberService {
 			throw new UsernameNotFoundException("Invalid membername or password");
 		}
 //이름, 패스워드, 역할을 담아서 반환, 역할은 가공함
-		return new org.springframework.security.core.userdetails.User(member.getMem_username(), member.getMem_password(), mapRolesToAuthorities(member.getRoles()));
+	return new org.springframework.security.core.userdetails.User(member.getMem_username(), member.getMem_password(), mapRolesToAuthorities(member.getRoles()));
 	}
 	
 

@@ -135,8 +135,14 @@
 						</div>
 						
 					</form:form>
-	<a href="${pageContext.request.contextPath}/">홈으로</a>
-
+					
+					<div style="margin-top: 10px" class="form-group">						
+						<div class="col-sm-6 controls">
+							<button type="submit" class="btn btn-primary" onClick="location.href='${pageContext.request.contextPath}/'">가입취소</button>
+						</div>
+					</div>
+						
+				
 				</div>
 
 			</div>
