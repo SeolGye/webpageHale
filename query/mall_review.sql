@@ -1,6 +1,6 @@
 SET FOREIGN_KEY_CHECKS= 0;
 DROP TABLE IF exists `mall_review`;
-create table `mall_review`(
+create table `item_review`(
 	`mrt_id` int(11) NOT NULL AUTO_INCREMENT,
 	`mit_id` int(11) default null,
 	`mrt_title`  varchar(128) default null,
@@ -12,7 +12,7 @@ create table `mall_review`(
 	PRIMARY KEY(`mrt_id`)
     ,KEY `FK_MI_idx2` (`mit_id`),
     CONSTRAINT `FK_MI2` FOREIGN KEY(`mit_id`)
-    REFERENCES `mall_item` (`mit_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+    REFERENCES `item` (`mit_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
     
     KEY `FK_MEMBER_idx2` (`mem_id`),
     CONSTRAINT `FK_MEMBER2` FOREIGN KEY(`mem_id`)

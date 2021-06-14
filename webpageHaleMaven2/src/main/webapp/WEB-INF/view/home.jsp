@@ -157,40 +157,6 @@
 
 <!-- BEST 아이템   -->
 
-
-<ul>
-<c:forEach var = "tempItem" items = "${items}">
-<li>
-<form action="${pageContext.request.contextPath}/cart/${tempItem.mit_id}" 
-						  method="POST" class="form-horizontal">			  
-<div>
-<img src="${tempItem.mit_file}">
-</div>
-<div>
-<a href=""></a>
-</div>
-${tempItem.mit_id}
-${tempItem.mit_name}
-${tempItem.mit_summary}
-${tempItem.mit_content}
-${tempItem.mit_price}
-
-<div style="margin-top: 10px" class="form-group">						
-<div class="col-sm-6 controls">
-<button type="submit" class="btn btn-success">장바구니</button>
-</div>
-</div>
-
-</form>
-</li>
-</c:forEach>
-</ul>
-
-
-
-
-
-
 							<div class="section-title" style="margin-top:70px" >
                                 <h2 style="font-size:40px">Daily Best</h2>
                             </div>

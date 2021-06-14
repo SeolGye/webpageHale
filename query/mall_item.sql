@@ -1,7 +1,7 @@
 USE `webprojectHale`;
 SET FOREIGN_KEY_CHECKS= 0;
-DROP TABLE IF exists `mall_item`;
-create table `mall_item`(
+DROP TABLE IF exists `item`;
+create table `item`(
 	`mit_id` int(11) NOT NULL AUTO_INCREMENT,
 	`mit_key` varchar(128) default null,
 	`mit_name`  varchar(128) default null,

@@ -33,11 +33,11 @@
 <c:forEach var = "tempMember" items="${members}" >
 <!-- 유저별 업데이트 링크 -->
 <!-- 파라미터에 멤버 아이디를 넣어서 전달 -->
-<c:url var ="updateLink" value="/member/editMember">
-</c:url>
+<%-- <c:url var ="updateLink" value="/member/editMember">
+</c:url> --%>
 
 <!-- 유저별 삭제 링크 -->
-<c:url var ="deleteLink" value="${pageContext.request.contextPath}/member/deleteMember">
+<c:url var ="deleteLink" value="/admin/delete/${tempMember.mem_username}">
 </c:url>
 
 <tr>

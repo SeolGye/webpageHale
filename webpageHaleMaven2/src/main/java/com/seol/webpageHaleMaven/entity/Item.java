@@ -1,6 +1,6 @@
 package com.seol.webpageHaleMaven.entity;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.sun.istack.NotNull;
 
 @Entity
 @Table(name= "item")
@@ -107,9 +106,40 @@ public class Item {
 		@JoinColumn(name="mit_id")
 		private List<ItemReview> reviews;
 		//Undirectional Mapping
+		
+		@OneToMany(fetch=FetchType.LAZY,
+				cascade= CascadeType.ALL)
+		@JoinColumn(name="mit_id")
+		private List<ItemDetail> ItemDetails;
+		
+		
+		
+		/* 리뷰 추가 */
+		public void addReview(ItemReview theItemReview) {	
+			if(reviews==null) {
+				reviews=new ArrayList<>();
+			}
+			this.reviews.add(theItemReview);
+		}
+		
+		/* 아이템 옵션 추가 */
+		
+		public void addItemDetail(ItemDetail theItemDetail) {	
+			if(ItemDetails==null) {
+				ItemDetails=new ArrayList<>();
+			}
+			this.ItemDetails.add(theItemDetail);
+		}
+		
+		
+		public List<ItemDetail> getItemDetails() {
+			return ItemDetails;
+		}
 
-		
-		
+		public void setItemDetails(List<ItemDetail> itemDetails) {
+			ItemDetails = itemDetails;
+		}
+
 		public int getMit_id() {
 			return mit_id;
 		}

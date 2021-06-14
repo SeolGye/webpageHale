@@ -19,6 +19,8 @@
 
 <a href="${pageContext.request.contextPath}/admin/memberList">회원목록</a>
 
+<a href="${pageContext.request.contextPath}/shop/addItem">상품등록</a>
+
 <a href="${pageContext.request.contextPath}/">홈으로</a>
 
 

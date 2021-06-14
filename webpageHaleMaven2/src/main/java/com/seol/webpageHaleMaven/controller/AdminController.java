@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -57,8 +58,17 @@ public class AdminController {
 		memberService.saveOrUpdate(theEditMember);
 		
 		return "redirect:/admin/memberList";
+	}
 	
+	
+	@GetMapping("/delete/{userName}")
+	public String deleteMember(@PathVariable("userName") String theUserName,  Model theModel) {
+		System.out.println("@@@@@@@@@"+theUserName);
 		
+		memberService.deleteMember(theUserName);
+			
+		return "redirect:/admin/memberList";
+	}	
 		
 	/*
 	 * @PostMapping("/saveEditMember") public String
@@ -75,4 +85,4 @@ public class AdminController {
 	 * return "redirect:/admin/memberList"; }
 	 */
 }
-	}
+	
