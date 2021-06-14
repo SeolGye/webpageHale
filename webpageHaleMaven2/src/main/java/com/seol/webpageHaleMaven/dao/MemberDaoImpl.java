@@ -53,8 +53,6 @@ public class MemberDaoImpl implements MemberDao{
 //유저 정보를 업데이트하거나 등록한다.
 	@Override
 	public void save(Member member) {
-
-		logger.info("=====>Processing member DAO for : " + member.getMem_username() + member.getRoles() + member.getMem_birthday());
 		//세션 팩토리에서 현재 hibernate 세션 생성
 		Session currentSession = sessionFactory.getCurrentSession();
 

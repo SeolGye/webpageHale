@@ -138,7 +138,7 @@ private int getIntProperty(String propName) {
 		return txManager;
 	}	
 	
-	
+//css 부를 때 경로설정 
 	 @Override
 	 public void addResourceHandlers(ResourceHandlerRegistry registry) {
         if (!registry.hasMappingForPattern("/resources/**")) {

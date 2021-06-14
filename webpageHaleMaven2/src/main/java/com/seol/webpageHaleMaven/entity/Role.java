@@ -1,5 +1,7 @@
 package com.seol.webpageHaleMaven.entity;
 
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,14 +21,9 @@ public class Role {
 	@Column(name = "role_name")
 	private String name;
 
-	public Role() {
-	}
-
 	public Role(String name) {
 		this.name = name;
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -46,7 +43,7 @@ public class Role {
 
 	@Override
 	public String toString() {
-		return "Role{" + "id=" + id + ", name='" + name + '\'' + '}';
+		return "Role [id=" + id + ", name=" + name + "]";
 	}
-	
+
 }

@@ -1,3 +1,4 @@
+USE `webprojectHale`;
 SET FOREIGN_KEY_CHECKS= 0;
 DROP TABLE IF exists `mall_item`;
 create table `mall_item`(
@@ -14,14 +15,14 @@ create table `mall_item`(
 	`mit_content` text(256) default null,
     `mit_mobile_content` text(256) default null,
 	`mit_price` int(11) default null,
-	`mit_file_1 ~ mit_file_10` varchar(128) default null,
+	`mit_file` varchar(128) default null,
 	`mem_id` int(11) default null,
 	`mit_hit` int(11) default null,
-	`mit_datetime` datetime default null,
-	`mit_updated_datetime` datetime default null,
+	`mit_datetime` varchar(128) default null,
+	`mit_updated_datetime` varchar(128) default null,
 	`mit_sell_count` int(11) default null,
 	`mit_wish_count` int(11) default null,
-	`mit_download_days` int(11) default null,
+	`mit_download_days` varchar(128) default null,
 	`mit_review_count` int(11) default null,
 	`mit_review_average` decimal(3,1) default null,
 	`mit_qna_count` int(11) default null,
@@ -36,5 +37,5 @@ create table `mall_item`(
     CONSTRAINT `FK_BRD2` FOREIGN KEY(`brd_id`)
     REFERENCES `board` (`brd_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
     
-) Engine=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+) Engine=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 SET FOREIGN_KEY_CHECKS= 1;
