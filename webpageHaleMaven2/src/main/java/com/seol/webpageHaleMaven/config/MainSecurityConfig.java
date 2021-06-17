@@ -34,9 +34,15 @@ public class MainSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception{
 		
 		http.authorizeRequests()
+		//webjars
+		.antMatchers("/webjars/**").permitAll()
 		.antMatchers("/").permitAll()
+		.antMatchers("/shop/**").permitAll()
 		.antMatchers("/member/**").hasAnyRole("MEMBER, ADMIN")
 		.antMatchers("/admin/**").hasRole("ADMIN")
+		.and() 
+		.csrf() 
+		.ignoringAntMatchers("/shop/addItemProcessing") 
 		.and()
 		.formLogin()
 		.loginPage("/login")

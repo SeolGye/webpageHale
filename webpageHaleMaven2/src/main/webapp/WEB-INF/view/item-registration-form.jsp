@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -7,37 +8,42 @@
 <html>
 <head>
 <title>안녕~</title>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!--  <meta name="viewport" contnent="width=device-width, initial-scale=1.0">
- --> 
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-    
+
+<!-- CSRF 토큰 -->
+<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+<!-- default header name is X-CSRF-TOKEN -->
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
+
 <!-- 부트스트랩-->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<link rel="stylesheet"
+		 href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>	
+	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="//code.jquery.com/jquery.min.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+	
 		
-	<meta charset="UTF-8">
-    <meta name="description" content="Ogani Template">
-    <meta name="keywords" cotent="Ogani, unica, creative, html">
-    <meta name="viewport" contnent="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ogani | Template</title>
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/style.css" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/main.82cfd66e.css" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/theme.css" type="text/css">
+	<style>
+		.error {color:red}
+	</style>
+	
+	<script>
+	// jQuery
+	$(document).ready(function(){
+	    // spring  security post 전송시 403 에러 대처 패치
+	    var token = $("meta[name='_csrf']").attr("content");
+	    var header = $("meta[name='_csrf_header']").attr("content");
+	    $(function() {
+	        $(document).ajaxSend(function(e, xhr, options) {
+	            xhr.setRequestHeader(header, token);
+	        });
+	    });
+	</script>
 	
 	
 	<script>
@@ -50,7 +56,7 @@
 	  var oCell = oRow.insertCell();
 
 	  //삽입될 Form Tag
-	  var frmTag = "<input type=text name=addText[]>" + " " +"<input type = text name =addPrice[]>";
+	  var frmTag = "<input type=text name=addText[] placeholder=이름>" + " " +"<input type = text name =addPrice[] placeholder=가격>";
 	  frmTag += "<input type=button value='삭제' onClick='removeRow()' style='cursor:hand'>";
 	  oCell.innerHTML = frmTag;
 	}
@@ -64,31 +70,104 @@
 	
 </head>
 <body>
-<div class="jumbotron">
+<!-- 탑 메뉴 -->
+	<div class="navbar-wrapper">
 		<div class="container">
-			<h1 class="display-3">
-				상품 등록
-			</h1>
+			<nav class="navbar navbar-inverse navbar-static-top">
+				<div class="container" id="header_menu">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed"
+							data-toggle="collapse" data-target="#navbar"
+							aria-expanded="false" aria-controls="navbar">
+							<span class="sr-only"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span> <span class="icon-bar"></span>
+						</button>
+
+					</div>
+					<div id="navbar" class="navbar-collapse collapse">
+						<ul class="nav navbar-nav">
+							<li><a href="${pageContext.request.contextPath}/">Home</a></li>
+							<li ><a href="${pageContext.request.contextPath}/admin/memberList">회원목록</a></li>
+							<li class="active"><a href="${pageContext.request.contextPath}/shop/addItem">상품등록</a></li>
+
+							<!-- <li><a href="/asp-shoppingMall/mall/memberList.asp">회원록록</a></li>
+
+							<li><a href="/asp-shoppingMall/mall/logout.asp">로그아웃</a></li>
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown" role="button" aria-expanded="false">님
+									환영합니다. <span class="caret"></span>
+							</a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="/asp-shoppingMall/mall/regedit.asp">회원정보
+											수정</a></li>
+									<li><a href="#">Another action</a></li>
+									<li><a href="#">Something else here</a></li>
+									<li class="divider"></li>
+									<li class="dropdown-header">Nav header</li>
+									<li><a href="#">Separated link</a></li>
+									<li><a href="#">One more separated link</a></li>
+								</ul></li> -->
+						</ul>
+					</div>
+				</div>
+			</nav>
 		</div>
 	</div>
 	
-	<form:form action="${pageContext.request.contextPath}/shop/addItemProcessing" 
-						  	   modelAttribute="item"
-						  	   class="form-horizontal">
 	
-	<h3>상품 제목 </h3>
-	<form:input path="mit_name" placeholder="이름"/>
-	<h3>요약</h3>	   
-	<form:input path="mit_summary" placeholder="요약"/>
-	<h3>상세 설명</h3>
-	<form:input path="mit_content" placeholder="상세 설명"/>
-	<h3>가격</h3>
-	<form:input path="mit_price" placeholder="가격"/>
+<div class="rows">
+<div class="container">
+<div class="col-xs-12 col-sm-12">
+      <h1 class="bg-primary text-center" style="width:100%; padding-top:20px; padding-bottom:20px; text-align:center">상품등록</h1>
+      <div class="col-xs-3 col-sm-3"></div>
+     <div class="col-xs-6 col-sm-6">
 
-	<h3>옵션</h3>
+<!-- -------------------------------------------------------------------------------------------- -->
 
-<form name="itemOption" method="post">
-<table >
+<%-- <form action = "${pageContext.request.contextPath}/shop/addItemProcessing2" enctype="multipart/form-data"  method="POST" >
+
+<input type="text" name = "mit_name" >
+<button type="submit" >sdf </button>
+
+</form> --%>
+	
+	 <form action="${pageContext.request.contextPath}/shop/addItemProcessing" 
+						  	 enctype="multipart/form-data"  modelAttribute="item" method="POST"
+						  	   > 
+						  	   
+						  	   	
+	
+	<table class="table table-striped" >
+	
+	<tr>
+	<th>상품 제목 </th>
+	<td><input type="text" name ="mit_name" placeholder="이름"/></td>
+	</tr>
+	
+	<tr>
+	<th>요약</th>
+	<td><input type="text" name="mit_summary" placeholder="요약"/></td>
+	</tr>
+	
+	<tr>
+	<th>상세 설명</th>
+	<td><input type="text" name="mit_content" placeholder="상세 설명"/></td>
+	</tr>
+	
+	<tr>
+	<th>가격</th>
+	<td><input type="text" name="mit_price" placeholder="가격"/></td>
+	</tr>
+	
+	<tr>
+	<th>이미지</th>
+ 	<td><input type = "file" name="mit_file"/></td>
+ </tr>
+	<tr>
+	<th>옵션</th>
+	<td>
+
+<table>
   <tr>
     <td >
       <table >
@@ -101,8 +180,8 @@
          <td>
           <table id="addTable">
             <tr>
-              <td><input type="text" name="addText[]"> <input type = "text" name ="addPrice[]"></td>
-              <td></td>
+              <td><input type="text" name="addText[]" placeholder="이름">
+              <input type ="text" name ="addPrice[]" placeholder="가격"></td>
             </tr>
           </table>
          </td>
@@ -111,37 +190,26 @@
       </td>
    </tr>
  </table>
- 
- 
- <table>
-    <tr>
-    <td>
-    </td>
-    </tr>
-    <tr>
-    <td>
 
 
-
-    
-    </td>
-   </tr>
- </table>
+<input type="submit"class="btn btn-success"  value="정보변경하기"/>			
+<button type="submit" class="btn btn-primary" onClick="location.href='${pageContext.request.contextPath}/'">가입취소</button>
 	
-	<input type="submit"class="btn btn-success"  value="정보변경하기"/>			
-	<button type="submit" class="btn btn-primary" onClick="location.href='${pageContext.request.contextPath}/'">가입취소</button>
-	
-	<input type="hidden"
+	<%-- <input type="hidden"
 							   name="${_csrf.parameterName}"
-							   value="${_csrf.token}" />
-	
-</form>					  	   
-</form:form>
+							   value="${_csrf.token}" /> --%>
+
+</td>
+</tr>
 
 
-	
+</table>				  	   
+</form>
 
-
+</div>
+</div>
+</div>
+</div>
 
 </body>
 </html>

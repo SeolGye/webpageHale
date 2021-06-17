@@ -1,20 +1,30 @@
 package com.seol.webpageHaleMaven.config;
 
 import java.beans.PropertyVetoException;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.security.GeneralSecurityException;
 import java.util.Properties;
 
 import javax.sql.DataSource;
 
+import org.apache.ibatis.ognl.ParseException;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.hibernate.SessionFactory;
 import org.jboss.logging.Logger;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -54,7 +64,8 @@ public class MainAppConfig implements WebMvcConfigurer {
 		ComboPooledDataSource securityDataSource = new ComboPooledDataSource();
 
 		try {
-			securityDataSource.setDriverClass("com.mysql.jdbc.Driver");		
+			//securityDataSource.setDriverClass("com.mysql.jdbc.Driver");// 비추천		
+			securityDataSource.setDriverClass("com.mysql.cj.jdbc.Driver");
 		}
 		catch (PropertyVetoException exc) {
 			throw new RuntimeException(exc);
@@ -86,7 +97,7 @@ public class MainAppConfig implements WebMvcConfigurer {
 	
 	
 //변수 변환
-private int getIntProperty(String propName) {
+	private int getIntProperty(String propName) {
 		
 		String propVal = env.getProperty(propName);
 		
@@ -106,7 +117,6 @@ private int getIntProperty(String propName) {
 	
 		return props;				
 	}
-
 
 	
 //세션 팩토리
@@ -138,6 +148,45 @@ private int getIntProperty(String propName) {
 		return txManager;
 	}	
 	
+	// MyBatis Config
+	/*
+	 
+	@Bean
+	// public SqlSessionFactoryBean getSqlSessionFactoryBean() throws Exception {
+	public SqlSessionFactory getSqlSessionFactoryBean() throws Exception {
+		
+		SqlSessionFactoryBean ssfb = new SqlSessionFactoryBean();
+		
+		Properties props = new Properties();
+		props.setProperty("mapUnderscoreToCamelCase", "true");
+		ssfb.setConfigurationProperties(props);		
+				
+		ssfb.setTypeAliasesPackage("com.seol.webpageHaleMaven.entity");
+		ssfb.setDataSource(this.securityDataSource());
+		
+		ssfb.setMapperLocations(new PathMatchingResourcePatternResolver()
+			.getResources("classpath:/mapper/*.xml"));
+
+		return ssfb.getObject();
+	} //
+	
+	@Bean
+	public SqlSessionTemplate getSqlSessionTemplate() throws Exception {
+		
+		SqlSessionTemplate sst 
+			= new SqlSessionTemplate((SqlSessionFactory) this.getSqlSessionFactoryBean());
+
+		return sst;
+	} // 
+	*/
+	
+/*	@Bean
+    public PlatformTransactionManager getTransactionManager() 
+    			throws URISyntaxException, GeneralSecurityException, ParseException, IOException {
+        
+		return new DataSourceTransactionManager(this.securityDataSource());
+    } //
+*/	
 	
 	 @Override
 	 public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -145,6 +194,25 @@ private int getIntProperty(String propName) {
             registry.addResourceHandler("/resources/**")
                 .addResourceLocations("/resources/")
                 .setCachePeriod(20);
+            
+            //webjars js
+            registry.addResourceHandler("/webjars/**")
+            	.addResourceLocations("classpath:/META-INF/resources/webjars/");
+            //css
+            registry.addResourceHandler("/css/**")
+            	.addResourceLocations("/resources/css/");
+            //img
+            registry.addResourceHandler("/img/**")
+            	.addResourceLocations("file:///D:/upload/image/");
+  //      		.addResourceLocations("/resources/img/");
+            
+            //js
+            registry.addResourceHandler("/js/**")
+        		.addResourceLocations("/resources/js/");
+            //이미지 파일 불러올 때 맵퍼 
+            registry.addResourceHandler("/upload/**")
+    		.addResourceLocations("file:///D:/upload/");
+            
         }  
     }	
 }

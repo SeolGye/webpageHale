@@ -45,6 +45,8 @@ public class AdminController {
 		return "adminMemberList";
 	}
 	
+	
+	
 	@PostMapping("/saveMember")
 	public String saveMember(@Valid @ModelAttribute("EditMember") EditMember theEditMember, BindingResult theBindingResult, Model theModel) {
 
@@ -70,6 +72,14 @@ public class AdminController {
 		return "redirect:/admin/memberList";
 	}	
 		
+	
+	
+	@GetMapping("/ItemList")
+	public String itemList(Model theModel) {
+		/* List<Item> theItems = */
+		return "adminItemList";
+	}
+	
 	/*
 	 * @PostMapping("/saveEditMember") public String
 	 * saveEditMember(@ModelAttribute("member") Member theEditMember, BindingResult

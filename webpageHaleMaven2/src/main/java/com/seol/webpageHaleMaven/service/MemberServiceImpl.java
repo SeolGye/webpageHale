@@ -144,7 +144,6 @@ public class MemberServiceImpl implements MemberService {
 //이름, 패스워드, 역할을 담아서 반환, 역할은 가공함
 	return new org.springframework.security.core.userdetails.User(member.getMem_username(), member.getMem_password(), mapRolesToAuthorities(member.getRoles()));
 	}
-	
 
 	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
 		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
@@ -155,10 +154,5 @@ public class MemberServiceImpl implements MemberService {
 	@Transactional
 	public void deleteMember(String name) {
 		memberDao.deleteMember(name);
-		
 	}
-	
-	
-
-	
 }

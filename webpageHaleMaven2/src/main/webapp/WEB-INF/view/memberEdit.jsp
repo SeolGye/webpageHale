@@ -74,7 +74,7 @@
 <div class="rows">
 <div class="container">
  
-   <div clss="col-xs-12 col-sm-12">
+   <div class="col-xs-12 col-sm-12">
       <h1 class="bg-primary text-center" style="width:100%; padding-top:20px; padding-bottom:20px; text-align:center">회원 정보 수정</h1>
       <div class="col-xs-3 col-sm-3"></div>
      <div class="col-xs-6 col-sm-6">

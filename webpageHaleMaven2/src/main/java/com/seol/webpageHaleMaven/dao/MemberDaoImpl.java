@@ -39,7 +39,7 @@ public class MemberDaoImpl implements MemberDao{
 		Member theMember = null;
 
 		try {
-			
+	
 			// 쿼리 결과값을 객체에 넣음
 			theMember = theQuery.getSingleResult();
 		} catch (Exception e) {
@@ -57,7 +57,6 @@ public class MemberDaoImpl implements MemberDao{
 		logger.info("=====>Processing member DAO for : " + member.getMem_username() + member.getRoles() + member.getMem_birthday());
 		//세션 팩토리에서 현재 hibernate 세션 생성
 		Session currentSession = sessionFactory.getCurrentSession();
-
 		//유저를 생성한다.
 		currentSession.saveOrUpdate(member);
 	}
@@ -66,7 +65,6 @@ public class MemberDaoImpl implements MemberDao{
 
 	@Override
 	public List<Member> getMember() {
-
 		Session currentSession = sessionFactory.getCurrentSession();
 		Query<Member> theQuery = currentSession.createQuery("from Member",Member.class);
 		List<Member> members= theQuery.getResultList();
